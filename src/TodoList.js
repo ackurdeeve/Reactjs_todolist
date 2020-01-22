@@ -1,11 +1,12 @@
 import React, {Component, Fragment} from "react";
+import './style.css'
 
 class TodoList extends Component {
     constructor(props) {
         super(props);
         //定义数据
         this.state = {
-            inputValue: 'Hello!!!',
+            inputValue: 'Hello',
             list: []
         }
     }
@@ -15,11 +16,22 @@ class TodoList extends Component {
             //占位符
             <Fragment>
                 <div>
+                    {
+                        //这是一个单行注释
+                    }
+
+                    <label htmlFor="insertArea">输入内容</label>
+
+                    {/* 1，添加监听并绑定this与相应函数，否则this = undefined
+                        2，不要与html里面的class重名
+                    */}
                     <input
-                        //添加监听并绑定this与相应函数，否则this = undefined
+                        id='insertArea'
                         onChange={this.handleInputChange.bind(this)}
                         value={this.state.inputValue}
+                        className='input'
                     />
+
                     <button onClick={this.handleBtnClick.bind(this)}>
                         提交
                     </button>
@@ -29,9 +41,11 @@ class TodoList extends Component {
                         this.state.list.map((item, index) => {
                             return (
                                 //band可以添加传递的值给函数
+                                //不转义 dangerouslySetInnerHTML
                                 <li key={index}
-                                    onClick={this.handleItemDelete.bind(this, index)}>
-                                    {item}
+                                    onClick={this.handleItemDelete.bind(this, index)}
+                                    dangerouslySetInnerHTML={{__html: item}}
+                                >
                                 </li>
                             )
                         })
