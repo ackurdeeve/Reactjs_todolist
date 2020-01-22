@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from "react";
 import './style.css'
+import TodoItem from './TodoItem'
 
 class TodoList extends Component {
     constructor(props) {
@@ -40,13 +41,20 @@ class TodoList extends Component {
                     {
                         this.state.list.map((item, index) => {
                             return (
-                                //band可以添加传递的值给函数
-                                //不转义 dangerouslySetInnerHTML
-                                <li key={index}
-                                    onClick={this.handleItemDelete.bind(this, index)}
-                                    dangerouslySetInnerHTML={{__html: item}}
-                                >
-                                </li>
+                                //父组件传递值给子组件,可以传递多个值
+                                <div>
+                                    <TodoItem content={item}
+                                              index={index}
+                                              deleteItem={this.handleItemDelete.bind(this)}
+                                    />
+                                </div>
+                                // band可以添加传递的值给函数
+                                // 不转义 dangerouslySetInnerHTML
+                                // <li key={index}
+                                //     onClick={this.handleItemDelete.bind(this, index)}
+                                //     dangerouslySetInnerHTML={{__html: item}}
+                                // >
+                                // </li>
                             )
                         })
                     }
