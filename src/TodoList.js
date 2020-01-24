@@ -51,6 +51,7 @@ class TodoList extends Component {
                     <TodoItem content={item}
                               index={index}
                               deleteItem={this.handleItemDelete}
+                              test = 'myTest'
                         // 不建议用index做key值
                     />
                 </div>
